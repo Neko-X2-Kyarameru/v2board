@@ -19,7 +19,7 @@ class StatController extends Controller
             'server_rate'
         ])
             ->where('user_id', $request->user['id'])
-            ->where('record_at', '>=', strtotime(date('Y-m-1')))
+            ->where('record_at', '>=', strtotime('-1 month', strtotime(date('Y-m-1'))))
             ->orderBy('record_at', 'DESC');
         return response([
             'data' => $builder->get()
