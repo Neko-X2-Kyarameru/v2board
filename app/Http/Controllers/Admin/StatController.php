@@ -185,7 +185,7 @@ class StatController extends Controller
             ->where('record_at', '>=', $startAt)
             ->where('record_at', '<', $endAt)
             ->where('record_type', 'd')
-            ->limit(10)
+            ->limit(20)
             ->orderBy('total', 'DESC')
             ->get()
             ->toArray();
@@ -195,7 +195,7 @@ class StatController extends Controller
                     $statistics[$k]['server_name'] = $server['name'];
                 }
             }
-            $statistics[$k]['total'] = $statistics[$k]['total'] / 1073741824;
+            $statistics[$k]['total'] = number_format($statistics[$k]['total'] / 1073741824, 2);
         }
         array_multisort(array_column($statistics, 'total'), SORT_DESC, $statistics);
         return [
