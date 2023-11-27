@@ -60,6 +60,7 @@ class Passwall
             "host" => "",
             "path" => "",
             "tls" => $server['tls'] ? "tls" : "",
+            'fp' => 'chrome',
         ];
         if ($server['tls']) {
             if ($server['tlsSettings']) {
