@@ -14,6 +14,7 @@ use App\Models\InviteCode;
 use App\Utils\Dict;
 use App\Utils\CacheKey;
 use ReCaptcha\ReCaptcha;
+use App\Utils\TurnstileLaravel;
 
 class CommController extends Controller
 {
@@ -27,9 +28,9 @@ class CommController extends Controller
     public function sendEmailVerify(CommSendEmailVerify $request)
     {
         if ((int)config('v2board.recaptcha_enable', 0)) {
-            $recaptcha = new ReCaptcha(config('v2board.recaptcha_key'));
-            $recaptchaResp = $recaptcha->verify($request->input('recaptcha_data'));
-            if (!$recaptchaResp->isSuccess()) {
+            $turnstile = new TurnstileLaravel;
+            $turnstileResp = $turnstile->validate($request->input('recaptcha_data'));
+            if ($turnstileResp['status'] != true) {
                 abort(500, __('Invalid code is incorrect'));
             }
         }
