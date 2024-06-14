@@ -93,7 +93,7 @@ class V2rayNG
             'allowInsecure' => $server['allow_insecure'],
             'peer' => $server['server_name'],
             'sni' => $server['server_name'],
-            'fp' => 'chrome',
+            'fp' => 'chrome'
         ]);
         $uri = "trojan://{$password}@{$server['host']}:{$server['port']}?{$query}#{$name}";
         $uri .= "\r\n";
