@@ -6,6 +6,8 @@ use App\Models\Plan;
 use Illuminate\Console\Command;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
+use App\Utils\CacheKey;
+use Illuminate\Support\Facades\Cache;
 
 class ResetTraffic extends Command
 {
